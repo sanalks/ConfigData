@@ -1,1 +1,4 @@
 docker swarm join --token SWMTKN-1-30i8y3jhe6qu7u9qfjpvuwtep9vnziszlqxusi7hou82ovlv6b-ehpqn1i1qt6eisfnzggvdkpqj 192.168.1.100:2377
+docker network create --driver overlay mydrupal
+docker service create --name psql --network mydrupal -e POSTGRES_PASSWORD=mypass postgres
+docker service create --name drupal --network mydrupal -p80:80 drupal
